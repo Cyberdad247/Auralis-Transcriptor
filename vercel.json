@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/src/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "backend/src/server.js"
+    }
+  ],
+  "buildCommand": "npm install --prefix backend && npm install --prefix frontend/auralis-transcriptor-frontend && npm run build --prefix frontend/auralis-transcriptor-frontend"
+}
+
