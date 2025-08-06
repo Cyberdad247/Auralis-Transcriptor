@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "name": "auralis-transcriptor",
+  "builds": [
+    {
+      "src": "frontend/auralis-transcriptor-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "backend/src/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/src/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/auralis-transcriptor-frontend/dist/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "TRANSCRIPTION_PROVIDER": "openai-whisper",
+    "TTS_PROVIDER": "gtts",
+    "ENABLE_NLP_ANALYSIS": "true",
+    "PYTHON_SERVICE_ENABLED": "false"
+  },
+  "functions": {
+    "backend/src/server.js": {
+      "maxDuration": 30
+    }
+  }
+}

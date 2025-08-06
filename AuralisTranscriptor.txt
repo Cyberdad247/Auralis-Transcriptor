@@ -1,0 +1,227 @@
+Understood, Vizion. Here is the Project Overview / Executive Summary for Auralis Transcriptor, structured precisely as requested, leveraging the detailed information we have established:
+
+1. Project Overview / Executive Summary: Auralis Transcriptor
+App Name: Auralis Transcriptor
+
+Core Idea/Elevator Pitch: Auralis Transcriptor is a sophisticated, Star Trek LCARS-inspired application designed to efficiently and accurately convert spoken audio from a wide range of audio and video file formats into editable text. It provides robust capabilities for extracting audio from video, applying advanced transcription (including speaker diarization and timestamping), and enabling flexible export of the resultant text into document, PDF, or Markdown formats, all within an intuitive and visually distinctive user interface.
+
+Problem Statement: Users frequently encounter challenges in converting spoken content from various media files (recordings, interviews, lectures, video dialogues) into a usable text format. Existing solutions often lack comprehensive format support, struggle with accuracy, offer limited export options, or present a cumbersome user experience. The process of manually transcribing or seeking external, often costly, services is time-consuming, inefficient, and hinders productivity for individuals and professionals alike.
+
+Target Audience: The primary users for Auralis Transcriptor include, but are not limited to:
+
+Content Creators (Podcasters, YouTubers): Needing transcripts for accessibility, SEO, or repurposing content.
+Journalists & Researchers: Requiring accurate text from interviews, field recordings, or archival media.
+Students & Academics: For transcribing lectures, seminars, or study group discussions.
+Business Professionals: For converting meeting recordings, conference calls, or presentations into searchable and shareable text.
+Anyone who needs to convert spoken audio from diverse media files into a structured, editable, and exportable text format efficiently and reliably.
+
+---
+
+### **2. Minimum Viable Product (MVP) Definition**
+
+The MVP for Auralis Transcriptor will focus on delivering the fundamental, core value proposition: reliable audio-to-text transcription with essential output options. This approach minimizes initial complexity while providing immediate utility.
+
+*   **Core Idea (MVP):** Enable users to upload audio or video files, obtain a text transcription of the spoken content, and download this transcription in a basic, versatile format.
+*   **Problem Solved (MVP):** Eliminate the manual, time-consuming, and often inaccurate process of transcribing audio and video content by providing an automated, efficient, and accessible digital tool.
+*   **Target Audience (MVP Focus):** Individuals and professionals who require straightforward conversion of audio/video recordings into text for review, documentation, or basic content repurposing.
+*   **Unique Selling Proposition (MVP):** Automated transcription with video audio extraction capabilities, delivered through a distinctive, intuitive Star Trek LCARS-inspired interface, ensuring ease of use and a novel user experience for a core function.
+
+**Initial Set of Features with Requirements and User Stories (MVP Scope):**
+
+1.  **User Authentication:**
+    *   **Requirements:** Secure user registration, login, and session management. Password hashing and secure token handling.
+    *   **User Story:** "As a new user, I want to create an account so I can securely access my transcriptions."
+    *   **User Story:** "As a returning user, I want to log in so I can access my previously uploaded files and their transcripts."
+
+2.  **File Upload & Audio Extraction:**
+    *   **Requirements:**
+        *   Accept widely used audio formats (`.mp3`, `.wav`, `.flac`, `.m4a`).
+        *   Accept widely used video formats (`.mp4`, `.mov`, `.avi`) for audio extraction.
+        *   Client-side validation for file type and size.
+        *   Secure server-side handling and temporary storage of uploaded files.
+        *   Backend service (leveraging FFmpeg) to extract audio from video files and transcode all audio inputs to an optimal format (e.g., `WAV` PCM 16-bit) for the transcription engine.
+        *   Display a simple "uploading" and "processing" status indicator.
+    *   **User Story:** "As a user, I want to upload an audio file (e.g., MP3, WAV) from my computer so it can be transcribed."
+    *   **User Story:** "As a user, I want to upload a video file (e.g., MP4) so its audio track can be extracted and transcribed."
+
+3.  **Core Transcription:**
+    *   **Requirements:**
+        *   Integrate with a reliable cloud-based speech-to-text API (e.g., AWS Transcribe, Google Cloud Speech-to-Text) for high accuracy.
+        *   Process the pre-processed audio file to generate a text transcript.
+        *   Store the raw text transcript and basic metadata (original file name, transcription date) in the database.
+        *   Provide a "Transcribing..." status.
+    *   **User Story:** "As a user, I want my uploaded audio/video content to be automatically converted into text so I don't have to manually transcribe it."
+
+4.  **Basic Transcription Viewing & Download:**
+    *   **Requirements:**
+        *   Display the complete, unformatted transcribed text on a dedicated screen.
+        *   Provide options to download the transcript as a plain text (`.txt`) file.
+        *   Provide options to download the transcript as a Markdown (`.md`) file.
+    *   **User Story:** "As a user, I want to view the transcribed text of my file so I can read it."
+    *   **User Story:** "As a user, I want to download the transcribed text as a plain text file for simple use."
+    *   **User Story:** "As a user, I want to download the transcribed text as a Markdown file for easy integration into notes or documentation."
+
+5.  **My Transcripts List:**
+    *   **Requirements:** A simple list view showing previously uploaded files and their transcription status (e.g., "Uploaded," "Processing," "Completed").
+    *   **User Story:** "As a user, I want to see a list of my past transcriptions so I can easily find and re-download them."
+
+**Pruned (Non-MVP) Features for Future Iterations:**
+
+*   **Advanced Transcription Features:** Speaker diarization, timestamping displayed in UI, real-time transcription.
+*   **In-App Editing:** A rich text editor for post-transcription editing.
+*   **Rich Document Export:** PDF, DOCX, SRT/VTT file formats.
+*   **Advanced File Management:** Search, filter, sort, and organize past transcriptions.
+*   **User Profiles & Settings:** Granular settings beyond basic account management.
+*   **Multi-language Support:** While the backend API may support it, explicit UI for language selection will be post-MVP.
+
+---
+
+### **3. Product Requirements Document (PRD) / Product Requirements Prompts (PRPs)**
+
+This section outlines the comprehensive requirements for Auralis Transcriptor, serving as the detailed blueprint for development.
+
+**I. Project Overview (As previously defined):**
+*   **App Name:** Auralis Transcriptor
+*   **Core Idea:** Automated, accurate audio/video to text transcription with flexible export.
+*   **Problem Statement:** Inefficient and limited manual/automated transcription.
+*   **Target Audience:** Content creators, journalists, researchers, students, business professionals, and general users requiring transcription.
+
+**II. Goals & Objectives:**
+*   **Primary Goal:** To deliver a reliable and user-friendly platform for converting spoken language from diverse media files into accurate text.
+*   **Key Performance Indicators (KPIs):**
+    *   Transcription accuracy rate (e.g., aiming for >90% for clear audio).
+    *   Average transcription processing time.
+    *   User retention rate.
+    *   Number of successful file uploads/transcriptions.
+    *   User satisfaction (e.g., via feedback).
+
+**III. Functional Requirements (MVP Focus):**
+
+*   **FR1: User Management:**
+    *   FR1.1: Users can register with email and password.
+    *   FR1.2: Users can log in with registered credentials.
+    *   FR1.3: User sessions are securely managed (e.g., JWT, HTTP-only cookies).
+    *   FR1.4: Users can log out.
+*   **FR2: File Upload & Pre-processing:**
+    *   FR2.1: System accepts audio files (`.mp3`, `.wav`, `.flac`, `.m4a`).
+    *   FR2.2: System accepts video files (`.mp4`, `.mov`, `.avi`).
+    *   FR2.3: Maximum file size limit (e.g., 500MB initially).
+    *   FR2.4: Audio stream is extracted from video files.
+    *   FR2.5: All audio inputs are transcoded to a standardized format (e.g., `WAV` PCM 16-bit, 16kHz mono) for transcription.
+    *   FR2.6: Provides visual feedback on upload progress and processing status.
+*   **FR3: Transcription Engine:**
+    *   FR3.1: Integrates with a chosen Speech-to-Text API (e.g., AWS Transcribe).
+    *   FR3.2: Converts processed audio into raw text transcript.
+    *   FR3.3: Handles errors from the transcription API gracefully (e.g., API limits, transcription failure).
+*   **FR4: Transcript Management:**
+    *   FR4.1: Stores raw transcript text and associated metadata (user ID, original file name, timestamp of upload/transcription, duration) in a database.
+    *   FR4.2: Lists all user's previous transcriptions with their status.
+    *   FR4.3: Allows retrieval of a specific transcript by the user.
+*   **FR5: Transcript Viewing & Export:**
+    *   FR5.1: Displays the transcribed text clearly on a dedicated page.
+    *   FR5.2: Provides a button to download the text as `.txt`.
+    *   FR5.3: Provides a button to download the text as `.md`.
+
+**IV. Non-Functional Requirements:**
+
+*   **Performance:**
+    *   Transcription time: Aim for 1x audio duration + 20-30% overhead for files under 30 minutes.
+    *   UI responsiveness: Sub-200ms for common interactions.
+*   **Scalability:** Architecture should support scaling horizontally to handle increased user load and concurrent transcription requests. Utilize cloud-native services where possible.
+*   **Security:**
+    *   All data in transit and at rest encrypted.
+    *   Protection against common web vulnerabilities (OWASP Top 10).
+    *   Secure authentication and authorization.
+*   **Reliability:** High availability of services, robust error handling, and retry mechanisms for external API calls.
+*   **Usability:** Intuitive interface (LCARS theme), clear instructions, minimal cognitive load.
+*   **Maintainability:** Clean, modular codebase, comprehensive documentation, automated testing.
+
+**V. Technical Stack (High-Level Decision - for MVP):**
+
+*   **Frontend:** React (for component-based UI development and vibrant ecosystem).
+*   **Backend:** Node.js with Express (for fast API development, asynchronous handling, and consistent JavaScript stack).
+*   **Database:** PostgreSQL (for relational data, strong consistency, and scalability).
+*   **File Storage:** AWS S3 (for scalable, durable, and secure storage of uploaded and processed media files).
+*   **Audio/Video Processing:** FFmpeg (server-side, integrated via Node.js child processes).
+*   **Transcription API:** AWS Transcribe (managed service, high accuracy, scalability).
+*   **Queuing System:** AWS SQS (Simple Queue Service) or similar (for asynchronous processing of transcription jobs).
+
+**VI. Database Schema (Conceptual - MVP):**
+
+*   **Users Table:**
+    *   `id` (PK, UUID)
+    *   `email` (UNIQUE, String)
+    *   `password_hash` (String)
+    *   `created_at` (Timestamp)
+    *   `updated_at` (Timestamp)
+*   **Transcriptions Table:**
+    *   `id` (PK, UUID)
+    *   `user_id` (FK to Users.id)
+    *   `original_filename` (String)
+    *   `original_file_url` (String - S3 URL)
+    *   `processed_audio_url` (String - S3 URL, if extracted/transcoded)
+    *   `transcript_text` (TEXT)
+    *   `status` (ENUM: 'UPLOADED', 'PROCESSING_AUDIO', 'TRANSCRIBING', 'COMPLETED', 'FAILED')
+    *   `duration_seconds` (Integer)
+    *   `created_at` (Timestamp)
+    *   `updated_at` (Timestamp)
+
+**VII. API Endpoints (Conceptual - MVP):**
+
+*   `POST /api/auth/register` (Register new user)
+*   `POST /api/auth/login` (User login)
+*   `POST /api/transcriptions/upload` (Upload file, trigger audio extraction/transcoding)
+*   `GET /api/transcriptions` (List user's transcriptions)
+*   `GET /api/transcriptions/:id` (Retrieve single transcription details)
+*   `GET /api/transcriptions/:id/download/txt` (Download as plain text)
+*   `GET /api/transcriptions/:id/download/md` (Download as Markdown)
+
+---
+
+### **4. Employ Context Engineering and Global Rules**
+
+For optimal collaboration with an AI coding assistant like myself, "Context Engineering" is paramount. This involves providing a comprehensive operational framework that guides coding practices, architectural decisions, and error handling beyond explicit task instructions.
+
+**Implementation Strategy:**
+
+1.  **Global Rules File (`khoj_rules.md` or similar):** Create a dedicated Markdown file within the project repository. This file will contain:
+    *   **Coding Standards:** ESLint/Prettier configuration for JavaScript/TypeScript, Python Black/Flake8 for Python, consistent naming conventions (e.g., camelCase for JS, snake_case for Python).
+    *   **Architectural Principles:** Adherence to SOLID principles, DRY (Don't Repeat Yourself), separation of concerns, microservices communication patterns.
+    *   **Security Guidelines:** Best practices for input validation, sanitization, authentication token handling, data encryption (HTTPS, at-rest encryption for S3).
+    *   **Error Handling:** Consistent error response formats (e.g., JSON with `code`, `message`, `details`), centralized logging strategy.
+    *   **Testing Philosophy:** Emphasis on unit tests, integration tests, and end-to-end tests.
+    *   **Deployment Guidelines:** Principles for containerization (Docker), CI/CD pipelines.
+    *   **Documentation Standards:** Requirements for READMEs, inline code comments for complex logic, API documentation (e.g., OpenAPI).
+    *   **Performance Considerations:** Guidelines for optimizing database queries, caching strategies, efficient API design.
+
+2.  **Examples and Snippets:**
+    *   **Existing Codebase:** Provide examples of how specific components or services are implemented. For instance, a basic Express API endpoint, a React component structure, or a database interaction example.
+    *   **Problem-Solving Patterns:** If common errors or tricky scenarios have been encountered in previous projects, document the "correct" or preferred way to solve them. E.g., "When handling file uploads, always sanitize filenames to prevent path traversal."
+    *   **UI Component Library:** Define a component library with examples for buttons, input fields, and navigation elements that embody the LCARS style, ensuring consistency.
+
+3.  **Troubleshooting Guidelines:**
+    *   Define common issues and their typical solutions. E.g., "If an S3 upload fails, check IAM permissions and bucket policy."
+    *   Provide a checklist for debugging common types of problems (e.g., "Network errors: check API gateway logs, check backend service logs.").
+
+**Benefit:** This "ecosystem of context" allows me, as the AI, to infer best practices and adhere to the project's specific conventions without explicit instruction for every minor task. It promotes **Ordnung** and **Effizienz** by reducing misinterpretations and ensuring a cohesive codebase.
+
+---
+
+### **5. High-Level Technical Decisions and System Architecture**
+
+Building upon the previous discussion, here is a refined outline of the high-level technical decisions and the system architecture for Auralis Transcriptor, focusing on MVP requirements and future scalability.
+
+**A. Refined System Architecture Diagram:**
+
+```
+                                      [User Interface (Frontend: React)]
+                                                |
+                                                | (HTTP/S)
+                                                v
+                                      [API Gateway (Nginx/Cloud Gateway)]
+                                                |
+           +------------------------------------+-------------------------------------+
+           |                                    |                                     |
+           v                                    v                                     v
+[Auth Service (Node.js/Express)]   [Transc
+(Content truncated due to size limit. Use page ranges or line ranges to read remaining content)

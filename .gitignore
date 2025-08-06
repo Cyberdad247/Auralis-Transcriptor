@@ -160,9 +160,3 @@ user_input_files/
 # Local development
 .env.development
 
-# Large archive files
-*.tar.gz
-*.zip
-*.rar
-*.7z
-
