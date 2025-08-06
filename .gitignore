@@ -154,6 +154,15 @@ user_input_files/
 *.wmv
 *.flv
 
+# Image files (screenshots, etc.)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tiff
+
 # Vercel
 .vercel
 
