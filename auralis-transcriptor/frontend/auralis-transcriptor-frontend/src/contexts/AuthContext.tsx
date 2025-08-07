@@ -58,13 +58,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await authAPI.signIn(email, password);
-      if (response.error) {
-        throw new Error(response.error.message);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        throw new Error(error.message);
       }
-      if (response.data && response.data.user) {
-        setUser(response.data.user);
-      }
+      setUser(data.user);
     } catch (error: any) {
       throw new Error(error.message || 'Login failed');
     }
@@ -72,13 +73,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const response = await authAPI.signUp(email, password);
-      if (response.error) {
-        throw new Error(response.error.message);
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) {
+        throw new Error(error.message);
       }
-      if (response.data && response.data.user) {
-        setUser(response.data.user);
-      }
+      setUser(data.user);
     } catch (error: any) {
       throw new Error(error.message || 'Registration failed');
     }
@@ -86,7 +88,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      await authAPI.signOut();
+      await supabase.auth.signOut();
       setUser(null);
     } catch (error) {
       console.error('Logout error:', error);

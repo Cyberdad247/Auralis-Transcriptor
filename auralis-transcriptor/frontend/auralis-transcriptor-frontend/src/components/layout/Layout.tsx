@@ -146,7 +146,7 @@ export default function Layout({ children }: LayoutProps) {
                   <div className="data-font text-cyan-500 text-xs">AUTHENTICATED</div>
                 </div>
                 <LcarsButton 
-                  variant="warning" 
+                  variant="danger" 
                   size="sm" 
                   onClick={logout}
                   className="flex items-center space-x-2"
