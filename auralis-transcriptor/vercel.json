@@ -1,29 +1,26 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "frontend/auralis-transcriptor-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "backend/src/server.js",
-      "use": "@vercel/node",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+  "buildCommand": "cd frontend/auralis-transcriptor-frontend && npm install && npm run build",
+  "outputDirectory": "frontend/auralis-transcriptor-frontend/dist",
+  "functions": {
+    "backend/src/server.js": {
+      "maxDuration": 30
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/backend/src/server.js"
     },
     {
+      "src": "/assets/(.*)",
+      "headers": {
+        "cache-control": "max-age=31536000"
+      }
+    },
+    {
       "src": "/(.*)",
-      "dest": "/frontend/auralis-transcriptor-frontend/dist/$1"
+      "dest": "/index.html"
     }
   ],
   "env": {
