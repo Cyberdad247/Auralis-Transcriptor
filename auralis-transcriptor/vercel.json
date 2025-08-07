@@ -2,32 +2,10 @@
   "version": 2,
   "buildCommand": "cd frontend/auralis-transcriptor-frontend && npm install && npm run build",
   "outputDirectory": "frontend/auralis-transcriptor-frontend/dist",
-  "functions": {
-    "backend/src/server.js": {
-      "maxDuration": 30
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  },
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/src/server.js"
-    },
-    {
-      "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "max-age=31536000"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "TRANSCRIPTION_PROVIDER": "openai-whisper",
-    "TTS_PROVIDER": "gtts",
-    "ENABLE_NLP_ANALYSIS": "true",
-    "PYTHON_SERVICE_ENABLED": "false"
-  }
+  ]
 }
