@@ -15,7 +15,7 @@ export const config = {
     name: process.env.DB_NAME || 'auralis_transcriptor',
     user: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASSWORD || 'postgres',
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
     connectionString: process.env.DATABASE_URL || null
   },
 

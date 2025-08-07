@@ -30,12 +30,9 @@ async function initializeDatabase() {
     // Create PostgreSQL connection pool
     pool = new Pool({
       connectionString: config.database.connectionString,
-      host: config.database.host,
-      port: config.database.port,
-      database: config.database.name,
-      user: config.database.user,
-      password: config.database.password,
-      ssl: config.database.ssl,
+      ssl: {
+        rejectUnauthorized: false // Accept self-signed certificates for Supabase
+      },
       max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 2000,
