@@ -1,7 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://gwovgwvcaqgjubrykjun.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3b3Znd3ZjYXFnanVicnlranVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNjYyMDYsImV4cCI6MjA2OTk0MjIwNn0.wmp4EGi2c_XoXKBVnh8yEpoomRKoj8CFX-GPAJksYYQ'
+// Environment variables with fallbacks for development
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://gwovgwvcaqgjubrykjun.supabase.co'
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3b3Znd3ZjYXFnanVicnlranVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNjYyMDYsImV4cCI6MjA2OTk0MjIwNn0.wmp4EGi2c_XoXKBVnh8yEpoomRKoj8CFX-GPAJksYYQ'
+
+// Validate required environment variables
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing required Supabase environment variables')
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
