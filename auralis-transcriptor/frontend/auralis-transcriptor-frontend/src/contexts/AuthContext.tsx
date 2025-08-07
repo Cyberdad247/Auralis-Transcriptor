@@ -58,11 +58,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const { data, error } = await authAPI.signIn(email, password);
-      if (error) {
-        throw new Error(error.message);
+      const response = await authAPI.signIn(email, password);
+      if (response.error) {
+        throw new Error(response.error.message);
       }
-      setUser(data.user);
+      if (response.data && response.data.user) {
+        setUser(response.data.user);
+      }
     } catch (error: any) {
       throw new Error(error.message || 'Login failed');
     }
@@ -70,11 +72,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const { data, error } = await authAPI.signUp(email, password);
-      if (error) {
-        throw new Error(error.message);
+      const response = await authAPI.signUp(email, password);
+      if (response.error) {
+        throw new Error(response.error.message);
       }
-      setUser(data.user);
+      if (response.data && response.data.user) {
+        setUser(response.data.user);
+      }
     } catch (error: any) {
       throw new Error(error.message || 'Registration failed');
     }

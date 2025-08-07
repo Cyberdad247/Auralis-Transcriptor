@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "auralis-transcriptor",
   "builds": [
     {
       "src": "frontend/auralis-transcriptor-frontend/package.json",
@@ -33,10 +32,5 @@
     "TTS_PROVIDER": "gtts",
     "ENABLE_NLP_ANALYSIS": "true",
     "PYTHON_SERVICE_ENABLED": "false"
-  },
-  "functions": {
-    "backend/src/server.js": {
-      "maxDuration": 30
-    }
   }
 }

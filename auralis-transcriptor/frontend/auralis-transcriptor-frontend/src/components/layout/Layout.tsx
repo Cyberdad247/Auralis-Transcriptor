@@ -11,7 +11,7 @@ import {
   Clock,
   LogOut
 } from "lucide-react";
-import LCARSButton from "../ui/LCARSButton";
+import LcarsButton from "../ui/LcarsButton";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -145,7 +145,7 @@ export default function Layout({ children }: LayoutProps) {
                   <div className="lcars-font text-cyan-300 text-sm">ENSIGN {user.email.split('@')[0].toUpperCase()}</div>
                   <div className="data-font text-cyan-500 text-xs">AUTHENTICATED</div>
                 </div>
-                <LCARSButton 
+                <LcarsButton 
                   variant="warning" 
                   size="sm" 
                   onClick={logout}
@@ -153,7 +153,7 @@ export default function Layout({ children }: LayoutProps) {
                 >
                   <LogOut className="w-4 h-4" />
                   <span>LOGOUT</span>
-                </LCARSButton>
+                </LcarsButton>
               </div>
             )}
           </div>

@@ -74,7 +74,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadComplete }) => {
       const result = await uploadMutation.mutateAsync(selectedFile);
       setUploadProgress(50);
       
-      const transcriptionId = result.data.transcriptionId;
+      const transcriptionId = (result as any)?.data?.transcriptionId || (result as any)?.transcriptionId;
       setTranscriptionId(transcriptionId);
       setUploadProgress(75);
       

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, FileAudio, FileVideo, AlertCircle } from 'lucide-react';
-import LCARSButton from '../ui/LCARSButton';
+import LcarsButton from '../ui/LcarsButton';
 import { validateFile } from '../../utils';
 
 interface FileUploadZoneProps {
@@ -106,10 +106,10 @@ export default function FileUploadZone({ onFileSelect, disabled = false }: FileU
           </div>
         </div>
 
-        <LCARSButton variant="primary" size="lg" disabled={disabled}>
+        <LcarsButton variant="primary" size="lg" disabled={disabled}>
           <Upload className="w-5 h-5" />
           <span>SELECT FILES</span>
-        </LCARSButton>
+        </LcarsButton>
 
         <div className="flex items-center justify-center mt-4 text-cyan-500">
           <AlertCircle className="w-4 h-4 mr-2" />

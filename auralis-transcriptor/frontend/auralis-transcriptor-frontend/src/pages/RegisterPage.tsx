@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Zap, User, Lock, AlertCircle, UserPlus } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import LCARSButton from '../components/ui/LCARSButton';
+import LcarsButton from '../components/ui/LcarsButton';
 import LcarsPanel from '../components/ui/LcarsPanel';
 
 export default function RegisterPage() {
@@ -161,7 +161,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <LCARSButton 
+            <LcarsButton 
               type="submit" 
               variant="primary" 
               size="lg" 
@@ -178,7 +178,7 @@ export default function RegisterPage() {
                 <UserPlus className="w-5 h-5" />
               )}
               <span>{isLoading ? 'PROCESSING...' : 'REGISTER'}</span>
-            </LCARSButton>
+            </LcarsButton>
           </form>
 
           <div className="mt-6 text-center">
