@@ -1,0 +1,3 @@
+SpeechRecognition
+pocketsphinx
+pytest
