@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
 import { authAPI } from '../lib/api';
-import type { User } from '@supabase/supabase-js';
+import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
   user: User | null;
@@ -32,28 +32,67 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const isAuthenticated = !!user;
 
-  // Load user on mount (one-time check)
+  // Load user on mount and set up session recovery
   useEffect(() => {
+    let mounted = true;
+
     async function loadUser() {
-      setIsLoading(true);
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        setUser(user);
+        setIsLoading(true);
+        
+        // Check for existing session first
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('Error getting session:', error);
+          if (mounted) {
+            setUser(null);
+          }
+          return;
+        }
+
+        if (mounted) {
+          setUser(session?.user || null);
+        }
+      } catch (error) {
+        console.error('Auth initialization error:', error);
+        if (mounted) {
+          setUser(null);
+        }
       } finally {
-        setIsLoading(false);
+        if (mounted) {
+          setIsLoading(false);
+        }
       }
     }
+
     loadUser();
 
-    // Set up auth listener - KEEP SIMPLE, avoid any async operations in callback
+    // Set up auth state change listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        // NEVER use any async operations in callback
-        setUser(session?.user || null);
+      async (event, session) => {
+        if (!mounted) return;
+        
+        console.log('Auth state change:', event, session?.user?.email);
+        
+        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          setUser(session?.user || null);
+        } else if (event === 'SIGNED_OUT') {
+          setUser(null);
+        } else {
+          setUser(session?.user || null);
+        }
+        
+        if (isLoading) {
+          setIsLoading(false);
+        }
       }
     );
 
-    return () => subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const login = async (email: string, password: string) => {

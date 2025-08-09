@@ -28,8 +28,13 @@ const statusStyles = {
 
 export default function TranscriptionsPage() {
   const [selectedTranscription, setSelectedTranscription] = useState<Transcription | null>(null);
-  const { data: transcriptions = [], isLoading, error } = useTranscriptions();
+  const { data: transcriptionsResponse, isLoading, error } = useTranscriptions();
   const deleteMutation = useDeleteTranscription();
+  
+  // Extract transcriptions array from the response
+  const transcriptions = Array.isArray(transcriptionsResponse) 
+    ? transcriptionsResponse 
+    : transcriptionsResponse?.data?.transcriptions || [];
 
   const downloadTranscript = (transcription: Transcription, format: 'txt' | 'md') => {
     if (!transcription.transcript_text) return;
