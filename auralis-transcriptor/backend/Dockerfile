@@ -1,40 +1,32 @@
 # Auralis Transcriptor Backend Dockerfile
-FROM node:18-alpine
+FROM node:20-alpine AS base
 
-# Install FFmpeg and other dependencies
+# Install FFmpeg and build deps
 RUN apk add --no-cache \
     ffmpeg \
     python3 \
     make \
-    g++ \
-    && rm -rf /var/cache/apk/*
+    g++
 
-# Create app directory
 WORKDIR /app
+ENV NODE_ENV=production
 
-# Create necessary directories
+# Pre-create runtime dirs
 RUN mkdir -p uploads temp logs
 
-# Copy package files
+# Install only production deps first for better layer caching
 COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
 
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
-
-# Copy application code
+# Copy application source
 COPY src/ ./src/
 
-# Create non-root user
+# Create non-root user and set ownership
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S auralis -u 1001 -G nodejs
-
-# Set ownership of app directory
-RUN chown -R auralis:nodejs /app
-
-# Switch to non-root user
+    adduser -S auralis -u 1001 -G nodejs && \
+    chown -R auralis:nodejs /app
 USER auralis
 
-# Expose port
 EXPOSE 5000
 
 # Health check

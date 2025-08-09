@@ -76,10 +76,15 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ steps.meta.outputs.backend_image }}
+          flavor: |
+            latest=true # add latest tag on default branch
           tags: |
             type=ref,event=branch
             type=ref,event=tag
             type=sha
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
 
@@ -88,10 +93,15 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ steps.meta.outputs.frontend_image }}
+          flavor: |
+            latest=true # add latest tag on default branch
           tags: |
             type=ref,event=branch
             type=ref,event=tag
             type=sha
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
 
