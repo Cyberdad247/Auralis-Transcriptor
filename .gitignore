@@ -20,6 +20,7 @@ build/
 */dist/
 */build/
 .next/
+.out/
 out/
 
 # Runtime data
@@ -130,6 +131,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 env.bak/
 venv.bak/
@@ -165,6 +167,15 @@ user_input_files/
 
 # Vercel
 .vercel
+.vercelignore
+
+# Python caches
+.pytest_cache/
+.coverage
+
+# Windows / Misc
+Thumbs.db
+Desktop.ini
 
 # Local development
 .env.development

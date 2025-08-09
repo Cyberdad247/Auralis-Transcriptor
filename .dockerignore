@@ -1,0 +1,68 @@
+# Keep the Docker build context lean and secure
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+/dist
+/build
+**/dist/
+**/build/
+.next/
+out/
+.storybook-out/
+.cache/
+.parcel-cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+ENV/
+.python-version
+.pytest_cache/
+.coverage
+
+# Environment and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+.vercel
+.vercelignore
+
+# Logs and runtime
+logs/
+*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS/IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Uploads and temp
+uploads/
+tmp/
+temp/
+user_input_files/
+
