@@ -1,0 +1,38 @@
+# Minimize backend Docker build context
+
+# VCS
+.git
+.gitignore
+
+# Node
+node_modules/
+**/node_modules/
+
+# Build
+/dist
+/build
+**/dist/
+**/build/
+
+# Env
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# OS/IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python (if any scripts here)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+

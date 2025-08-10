@@ -1,0 +1,32 @@
+# Python services and virtual environments
+python-services/venv/
+python-services/env/
+python-services/__pycache__/
+
+# Backend node modules (not needed for frontend deployment)
+backend/node_modules/
+
+# Large binary files
+*.bin
+*.model
+*.wasm
+*.so
+
+# Development and build artifacts
+.env.development.local
+*.log
+coverage/
+.vscode/
+.idea/
+
+# Temporary files
+temp/
+tmp/
+uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: auralis-transcriptor-backend
+    env: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/server.js
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      # Add any other required backend env vars below as needed.
+      # Example secrets (set in Render dashboard, not committed here):
+      # - key: OPENAI_API_KEY
+      #   sync: false
+      # - key: AWS_ACCESS_KEY_ID
+      #   sync: false
+      # - key: AWS_SECRET_ACCESS_KEY
+      #   sync: false
+
