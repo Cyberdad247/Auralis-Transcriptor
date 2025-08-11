@@ -1,0 +1,33 @@
+{
+  "env": {
+    "es2022": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-undef": "error",
+    "import/order": ["warn", { "newlines-between": "always" }],
+    "eqeqeq": ["warn", "always"],
+    "prefer-const": "warn"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "uploads/",
+    "logs/",
+    "temp/",
+    "**/*.test.js"
+  ]
+}
+

@@ -1,0 +1,29 @@
+{
+  "name": "auralis-transcriptor",
+  "version": "1.0.0",
+  "description": "Star Trek LCARS-themed audio/video transcription application",
+  "main": "backend/src/server.js",
+  "type": "module",
+  "scripts": {
+    "build": "cd frontend/auralis-transcriptor-frontend && npm ci && npm run build",
+    "start": "cd backend && npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend/auralis-transcriptor-frontend && npm run dev\"",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend/auralis-transcriptor-frontend && npm install",
+    "vercel-build": "cd frontend/auralis-transcriptor-frontend && npm ci && npm run build"
+  },
+  "keywords": [
+    "transcription",
+    "audio",
+    "video",
+    "star-trek",
+    "lcars",
+    "react",
+    "nodejs",
+    "fastapi"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
