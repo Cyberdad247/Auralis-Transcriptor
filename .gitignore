@@ -1,39 +1,71 @@
+.vercel
+
+# Dependencies
+node_modules/
+
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtualenv
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Editor files
+*.py[cod]
+*$py.class
 *.so
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+venv/
+env/
+.venv/
+.env/
+python-services/venv/
+python-services/env/
+.pytest_cache/
+.coverage
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temp files
+temp/
+tmp/
+uploads/
+
+# Large model files
+*.bin
+*.model
+*.wasm
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Dependency directories
+jspm_packages/

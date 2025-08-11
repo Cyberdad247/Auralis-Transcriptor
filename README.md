@@ -9,6 +9,34 @@ Auralis-Transcriptor is an open-source audio transcription service. It takes an 
 
 ## Getting Started
 
+### Quick local run (Docker + local ASR)
+
+1) Download a small Vosk model into ./models/vosk:
+- Windows (PowerShell):
+  pwsh -File scripts\download_vosk_model.ps1
+- macOS/Linux:
+  bash scripts/download_vosk_model.sh
+
+2) Start the stack:
+- docker-compose up -d
+
+This brings up:
+- Postgres (db)
+- Backend (Node, provider default: whispercpp via python-services adapters)
+- Python services (ASR/TTS adapters, health: http://localhost:8000/health)
+- Frontend (Vite dev server: http://localhost:3000)
+
+Switch provider to Vosk:
+- In docker-compose.yml backend section, set:
+  TRANSCRIPTION_PROVIDER: vosk
+  VOSK_URL: http://python-services:8000/adapters/vosk
+
+Use LocalAI (OpenAI-compatible):
+- Run LocalAI with Whisper model, then set env for backend:
+  OPENAI_BASE_URL: http://host.docker.internal:8080/v1
+  OPENAI_API_KEY: sk-local
+  TRANSCRIPTION_PROVIDER: openai-whisper
+
 ### Prerequisites
 
 - Python 3.8+
